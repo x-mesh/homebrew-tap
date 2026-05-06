@@ -5,21 +5,21 @@
 class Gk < Formula
   desc "Lightweight Go git helper CLI (pull, log, status, branch)"
   homepage "https://github.com/x-mesh/gk"
-  version "0.32.2"
+  version "0.33.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/x-mesh/gk/releases/download/v0.32.2/gk_darwin_amd64.tar.gz"
-      sha256 "1f50e75395678f285c54091c4e776b3a55ef1f129016e83f80dc2981e7a78955"
+      url "https://github.com/x-mesh/gk/releases/download/v0.33.0/gk_darwin_amd64.tar.gz"
+      sha256 "e9a587f1f570469563ad41a20832b56870f7bffa3f152e53458adefeec122f7c"
 
       define_method(:install) do
         bin.install "gk"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/x-mesh/gk/releases/download/v0.32.2/gk_darwin_arm64.tar.gz"
-      sha256 "8d0ecfdec6f8d34c1f7542dad0c1717f3d011a4e5472baf1f3b2a863dbc8a410"
+      url "https://github.com/x-mesh/gk/releases/download/v0.33.0/gk_darwin_arm64.tar.gz"
+      sha256 "aa52c6d5f593f6012a1383590c5709277a0a3e9ba90c0221cee47810c33774e6"
 
       define_method(:install) do
         bin.install "gk"
@@ -29,15 +29,15 @@ class Gk < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/gk/releases/download/v0.32.2/gk_linux_amd64.tar.gz"
-      sha256 "08a32e38929518f179fcd5a02155b7ce4b255d0ac4c6528571eb0ee12d8ff9a5"
+      url "https://github.com/x-mesh/gk/releases/download/v0.33.0/gk_linux_amd64.tar.gz"
+      sha256 "e91c38d96ae67d26068907ebcfbbe0a722f429571bd1b01490030409a5a271b7"
       define_method(:install) do
         bin.install "gk"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/gk/releases/download/v0.32.2/gk_linux_arm64.tar.gz"
-      sha256 "be12655486efb0bcdba0823143686845d793fe7e82ae06f856c7d35edfff7432"
+      url "https://github.com/x-mesh/gk/releases/download/v0.33.0/gk_linux_arm64.tar.gz"
+      sha256 "0bb3161ad0459267690480d48cc149d30424ba2c94ca973878a8c56ab63b8d52"
       define_method(:install) do
         bin.install "gk"
       end
