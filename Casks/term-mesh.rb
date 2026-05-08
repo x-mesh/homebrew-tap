@@ -14,6 +14,19 @@ cask "term-mesh" do
 
   depends_on macos: ">= :ventura"
 
+  # Quit a running term-mesh before brew tries to replace the bundle.
+  # macOS technically allows replacing a running .app via rename, but
+  # brew-cask sometimes silently no-ops the move when the app holds an
+  # active LaunchServices registration — leaving the user on the old
+  # version with a "successfully installed" message. Quitting first
+  # eliminates the race for both fresh installs and upgrades.
+  preflight do
+    system_command "/usr/bin/osascript",
+                   args: ["-e", 'tell application "term-mesh" to quit'],
+                   must_succeed: false
+    sleep 2
+  end
+
   app "term-mesh.app"
 
   binary "#{appdir}/term-mesh.app/Contents/Resources/bin/tm-agent"
