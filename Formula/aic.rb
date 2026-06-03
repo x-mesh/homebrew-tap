@@ -5,13 +5,13 @@
 class Aic < Formula
   desc "Shell command error analyzer with LLM (PTY wrapper + supervisor daemon)"
   homepage "https://github.com/x-mesh/aic"
-  version "0.13.0"
+  version "0.13.1"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/x-mesh/aic/releases/download/v0.13.0/aic_0.13.0_darwin_amd64.tar.gz"
-      sha256 "f3ed9ec575c6f1327021c22a25bb8dec369e77758c276538849edfb5de685190"
+      url "https://github.com/x-mesh/aic/releases/download/v0.13.1/aic_0.13.1_darwin_amd64.tar.gz"
+      sha256 "f873060f1ce531b24fde587c061e2222f21795fa5a1e4df23cb095bdc325f73a"
 
       define_method(:install) do
         bin.install "aic"
@@ -20,8 +20,8 @@ class Aic < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/x-mesh/aic/releases/download/v0.13.0/aic_0.13.0_darwin_arm64.tar.gz"
-      sha256 "c0a0001ab8dba4f0b93a4dfe17d3908be51907e4cef197cd881bf89bcbbaff10"
+      url "https://github.com/x-mesh/aic/releases/download/v0.13.1/aic_0.13.1_darwin_arm64.tar.gz"
+      sha256 "77fad1673ec616aa7680b5d348f7e75d9d56f03e6ce1d9f2a5922814cfdb991a"
 
       define_method(:install) do
         bin.install "aic"
@@ -33,8 +33,8 @@ class Aic < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/aic/releases/download/v0.13.0/aic_0.13.0_linux_amd64.tar.gz"
-      sha256 "9f309784d914e11d11017ab6f94d5d6eecb46fde0b4406d380fbdfec72877aab"
+      url "https://github.com/x-mesh/aic/releases/download/v0.13.1/aic_0.13.1_linux_amd64.tar.gz"
+      sha256 "3a4f0d086d8754e824f4f298c57f1deeeb2eb3e9b3951426b440d6715e8da7b2"
       define_method(:install) do
         bin.install "aic"
         bin.install "aic-session"
@@ -42,8 +42,8 @@ class Aic < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/aic/releases/download/v0.13.0/aic_0.13.0_linux_arm64.tar.gz"
-      sha256 "f7678942190c3f5260f3c7e476f885263d350f64573282d4ff0bb2759348c6b7"
+      url "https://github.com/x-mesh/aic/releases/download/v0.13.1/aic_0.13.1_linux_arm64.tar.gz"
+      sha256 "87122c613251551e495186e3e1c95dfac46b7b70894536882f9a71c361cd5627"
       define_method(:install) do
         bin.install "aic"
         bin.install "aic-session"
