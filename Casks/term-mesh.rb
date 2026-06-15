@@ -12,7 +12,7 @@ cask "term-mesh" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   # Quit a running term-mesh before brew tries to replace the bundle.
   # macOS technically allows replacing a running .app via rename, but
