@@ -1,6 +1,6 @@
 cask "term-mesh" do
-  version "0.150.0"
-  sha256 "50b94c41e6864cd25a2920312e402590baa1cbcf6b046491bf86de932037ae52"
+  version "0.151.0"
+  sha256 "92476730ec7b30b3ba2c9c3f8e7de122287f8b8f4ba3c22e9ea3047d15e51f8e"
 
   url "https://github.com/x-mesh/term-mesh/releases/download/v#{version}/term-mesh-macos-#{version}.dmg"
   name "term-mesh"
@@ -12,7 +12,7 @@ cask "term-mesh" do
     strategy :github_latest
   end
 
-  depends_on macos: :ventura
+  depends_on macos: ">= :ventura"
 
   # Quit a running term-mesh before brew tries to replace the bundle.
   # macOS technically allows replacing a running .app via rename, but
