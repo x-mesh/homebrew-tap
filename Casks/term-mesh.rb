@@ -1,6 +1,6 @@
 cask "term-mesh" do
-  version "0.186.3"
-  sha256 "9da99f8d61f539f543e353698f723f7f20d69453ea40bf90c9cd4ceddfda4020"
+  version "1.2.3"
+  sha256 "707ff57d9b18b503bc41d3a631440341c1e054a36f8fa721e3da24a0044dd608"
 
   url "https://github.com/x-mesh/term-mesh/releases/download/v#{version}/term-mesh-macos-#{version}.dmg"
   name "term-mesh"
@@ -22,19 +22,16 @@ cask "term-mesh" do
   # copy could still be holding the bundle when brew moves the new one in.
   # pkill matches on process name only, so unlike AppleScript it can never
   # put up a GUI prompt — see the uninstall comment for why that matters.
-  #
-  # Scope it to the bundle this install actually replaces. Matching on process
-  # name alone means an unguarded preflight kills every running term-mesh on
-  # the machine, including one launched from outside appdir that this install
-  # never touches. That is what lets an isolated `--appdir` install — the
-  # release smoke test — run beside a live app instead of taking it down.
+  # Only relevant when there is actually a bundle to replace: on a genuinely
+  # fresh install there is nothing running that this pkill could be for, and
+  # matching on process name alone risks killing an unrelated process.
   preflight do
-    if File.exist?("#{appdir}/term-mesh.app")
-      quit = system_command "/usr/bin/pkill",
-                            args:         ["-x", "term-mesh"],
-                            must_succeed: false
-      sleep 2 if quit.success?
-    end
+    next unless File.exist?("#{appdir}/term-mesh.app")
+
+    quit = system_command "/usr/bin/pkill",
+                          args:         ["-x", "term-mesh"],
+                          must_succeed: false
+    sleep 2 if quit.success?
   end
 
   postflight do
