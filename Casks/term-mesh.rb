@@ -1,6 +1,6 @@
 cask "term-mesh" do
-  version "0.195.0"
-  sha256 "49cd15ec2d953906e2a50537430aa977662da0f01728d3b61287cb07f6834da0"
+  version "0.196.0"
+  sha256 "ef981119b5b0aef4b5cf0724d9937cdd06fa5f5039134fefb0cbe846dfa85696"
 
   url "https://github.com/x-mesh/term-mesh/releases/download/v#{version}/term-mesh-macos-#{version}.dmg"
   name "term-mesh"
@@ -21,7 +21,9 @@ cask "term-mesh" do
   # Fresh installs never run the uninstall stanza below, so a hand-installed
   # copy could still be holding the bundle when brew moves the new one in.
   # pkill matches on process name only, so unlike AppleScript it can never
-  # put up a GUI prompt — see the uninstall comment for why that matters.
+  # put up a GUI prompt — see the uninstall comment for why that matters. The
+  # daemon deliberately outlives an ordinary quit while serving peers, but an
+  # upgrade must replace it or the new app adopts an old protocol process.
   #
   # Scope it to the bundle this install actually replaces. Matching on process
   # name alone means an unguarded preflight kills every running term-mesh on
@@ -34,6 +36,9 @@ cask "term-mesh" do
                             args:         ["-x", "term-mesh"],
                             must_succeed: false
       sleep 2 if quit.success?
+      system_command "/usr/bin/pkill",
+                     args: ["-f", "^#{appdir}/term-mesh[.]app/Contents/Resources/bin/term-meshd$"],
+                     must_succeed: false
     end
   end
 
@@ -59,7 +64,13 @@ cask "term-mesh" do
   # resolve the name, and it puts up a blocking "choose application" chooser.
   # The upgrade then hangs until a human dismisses it — `must_succeed: false`
   # does not help, because the call never returns at all.
-  uninstall quit: "com.termmesh.app"
+  uninstall quit: "com.termmesh.app",
+            script: {
+              executable: "/usr/bin/pkill",
+              args: ["-f", "^#{appdir}/term-mesh[.]app/Contents/Resources/bin/term-meshd$"],
+              must_succeed: false,
+              sudo: false,
+            }
 
   zap trash: [
     "~/.term-mesh",
