@@ -6,31 +6,31 @@ require_relative "../lib/private_strategy"
 class XBackup < Formula
   desc "MongoDB/PostgreSQL backup & restore CLI - full/incremental, PITR, encrypted, S3-compatible"
   homepage "https://github.com/x-mesh/x-backup"
-  version "0.2.0"
+  version "0.3.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.2.0/x-backup_darwin_arm64.tar.gz",
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_darwin_arm64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "a7e4cb110f2267d151b0118a6fbcd8d8345356b9555506aa0c0138eb9c8df0c5"
+      sha256 "145e6b9187a4cc871744dc048116aa1ac8015ae0ab47d7ca5ada8a934b725587"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.2.0/x-backup_darwin_amd64.tar.gz",
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_darwin_amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "84719a9851d3fe7e337e0e71a3a07b72fde4261ee5aa5bd5a05edb09f8cc4a3e"
+      sha256 "c7f8f51f0db271206ccc342d332f2ae8121d186ebb76eff4262ce425bf5567bf"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.2.0/x-backup_linux_amd64.tar.gz",
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_linux_amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "eac3e3b6e08d9e47f3bed72ea80ac566796aba7282d3c2ad68dba8d22f67b632"
+      sha256 "a7b9a0092b231b2eaf0070c774e6359542cb263a8665b7d2c1b0b95c9d28658a"
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.2.0/x-backup_linux_arm64.tar.gz",
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_linux_arm64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "c6c84749f17ba4417d9b36f22e1567440434b0a4deea3388e095f03e5a6857ad"
+      sha256 "846a2b471a3bfe57b5b5fa708e3ea18c62c291fb749abe33b4ad2282afb0d47f"
     end
   end
 
