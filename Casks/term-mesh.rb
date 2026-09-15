@@ -20,32 +20,34 @@ cask "term-mesh" do
 
   # Fresh installs never run the uninstall stanza below, so a hand-installed
   # copy could still be holding the bundle when brew moves the new one in.
-  # pkill matches on process name only, so unlike AppleScript it can never
-  # put up a GUI prompt — see the uninstall comment for why that matters. The
-  # daemon deliberately outlives an ordinary quit while serving peers, but an
-  # upgrade must replace it or the new app adopts an old protocol process.
+  # killall and pkill match on process names only, so unlike AppleScript they
+  # can never put up a GUI prompt — see the uninstall comment for why that
+  # matters. The daemon deliberately outlives an ordinary quit while serving
+  # peers, but an upgrade must replace it or the new app adopts an old
+  # protocol process.
   #
   # Scope it to the bundle this install actually replaces. Matching on process
   # name alone means an unguarded preflight kills every running term-mesh on
   # the machine, including one launched from outside appdir that this install
   # never touches. That is what lets an isolated `--appdir` install — the
   # release smoke test — run beside a live app instead of taking it down.
-  preflight do
-    if File.exist?("#{appdir}/term-mesh.app")
-      quit = system_command "/usr/bin/pkill",
-                            args:         ["-x", "term-mesh"],
-                            must_succeed: false
-      sleep 2 if quit.success?
-      system_command "/usr/bin/pkill",
-                     args: ["-f", "^#{appdir}/term-mesh[.]app/Contents/Resources/bin/term-meshd$"],
-                     must_succeed: false
+  #
+  # These are declarative steps because Homebrew deprecated Ruby preflight
+  # blocks. Steps cannot branch on whether the app was running, so the
+  # two-second grace period before stopping the daemon applies whenever the
+  # bundle exists.
+  preflight_steps do
+    if_path_exists "term-mesh.app", base: :appdir do
+      terminate_process "term-mesh"
+      run "/bin/sleep", args: ["2"]
+      terminate_process "^{{appdir}}/term-mesh[.]app/Contents/Resources/bin/term-meshd$", match: :full
     end
   end
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/term-mesh.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/term-mesh.app"],
+        must_succeed: false
   end
 
   # Quit a running term-mesh before brew replaces the bundle. macOS

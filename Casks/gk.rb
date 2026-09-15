@@ -2,6 +2,14 @@
 cask "gk" do
   binary "gk", target: "git-kit"
 
+  postflight_steps do
+    on_macos do
+      run "/usr/bin/xattr",
+          args:         ["-dr", "com.apple.quarantine", "{{staged_path}}/gk"],
+          must_succeed: false
+    end
+  end
+
   version "0.142.0"
 
   on_macos do
@@ -34,10 +42,6 @@ cask "gk" do
   end
 
   binary "gk"
-
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/gk"]
-  end
 
   # No zap stanza required
 

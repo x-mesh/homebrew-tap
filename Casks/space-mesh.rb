@@ -27,16 +27,14 @@ cask "space-mesh" do
   app "space-mesh.app"
   binary "#{appdir}/space-mesh.app/Contents/Resources/space-mesh"
 
-  preflight do
-    system_command "/usr/bin/osascript",
-                   args:         ["-e", 'tell application "space-mesh" to quit'],
-                   must_succeed: false
+  preflight_steps do
+    terminate_process "space-mesh"
   end
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/space-mesh.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/space-mesh.app"],
+        must_succeed: false
   end
 
   zap trash: [
