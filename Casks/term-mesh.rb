@@ -1,6 +1,6 @@
 cask "term-mesh" do
-  version "0.253.0"
-  sha256 "2d16b8f5c224bd8469e6a9a35ae6ccf3d711e6a597172b16d4cf63932d726592"
+  version "0.254.0"
+  sha256 "4819eca5d932f9731c2b3b12b7437b9cc7114c1d292c73450db1ef1e9da00325"
 
   url "https://github.com/x-mesh/term-mesh/releases/download/v#{version}/term-mesh-macos-#{version}.dmg"
   name "term-mesh"
