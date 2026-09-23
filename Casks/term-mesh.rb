@@ -1,6 +1,6 @@
 cask "term-mesh" do
-  version "0.255.0"
-  sha256 "54400369e224a1b29d2f8fac8cf77175fce3774f859da31b652019a0a214478c"
+  version "0.256.0"
+  sha256 "15acd5e3c0ed97d6e5e0b4f55fc7d22cb11d5e12ae8aeff41060854e76f62016"
 
   url "https://github.com/x-mesh/term-mesh/releases/download/v#{version}/term-mesh-macos-#{version}.dmg"
   name "term-mesh"
@@ -30,19 +30,22 @@ cask "term-mesh" do
   # the machine, including one launched from outside appdir that this install
   # never touches. That is what lets an isolated `--appdir` install — the
   # release smoke test — run beside a live app instead of taking it down.
-  preflight_steps do
-    if_path_exists "term-mesh.app", base: :appdir do
-      terminate_process "term-mesh"
-      run "/bin/sleep", args: ["2"]
-      run "/usr/bin/pkill",
-          args:         ["-f", "^{{appdir}}/term-mesh[.]app/Contents/Resources/bin/term-meshd$"],
-          must_succeed: false
+  preflight do
+    if File.exist?("#{appdir}/term-mesh.app")
+      quit = system_command "/usr/bin/pkill",
+                            args:         ["-x", "term-mesh"],
+                            must_succeed: false
+      sleep 2 if quit.success?
+      system_command "/usr/bin/pkill",
+                     args: ["-f", "^#{appdir}/term-mesh[.]app/Contents/Resources/bin/term-meshd$"],
+                     must_succeed: false
     end
   end
 
-  postflight_steps do
-    run "/usr/bin/xattr",
-        args: ["-dr", "com.apple.quarantine", "{{appdir}}/term-mesh.app"]
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/term-mesh.app"],
+                   sudo: false
   end
 
   # Quit a running term-mesh before brew replaces the bundle. macOS
