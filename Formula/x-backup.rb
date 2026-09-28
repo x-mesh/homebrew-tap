@@ -4,27 +4,27 @@
 class XBackup < Formula
   desc "MongoDB/PostgreSQL backup & restore CLI - full/incremental, PITR, encrypted, S3-compatible"
   homepage "https://github.com/x-mesh/x-backup"
-  version "0.3.0"
+  version "0.4.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_darwin_arm64.tar.gz"
-      sha256 "145e6b9187a4cc871744dc048116aa1ac8015ae0ab47d7ca5ada8a934b725587"
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.4.0/x-backup_darwin_arm64.tar.gz"
+      sha256 "ea458bd77ef22e9ab985fa076bb04c0757d5528a2317b0e85122bf5c42069093"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_darwin_amd64.tar.gz"
-      sha256 "c7f8f51f0db271206ccc342d332f2ae8121d186ebb76eff4262ce425bf5567bf"
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.4.0/x-backup_darwin_amd64.tar.gz"
+      sha256 "fc12847908b86f626ae33ac350f0a560e1faf17c9ab32fc255d552db2175db1d"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_linux_amd64.tar.gz"
-      sha256 "a7b9a0092b231b2eaf0070c774e6359542cb263a8665b7d2c1b0b95c9d28658a"
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.4.0/x-backup_linux_amd64.tar.gz"
+      sha256 "a22a2570b9365a52203e845753aa43bf534b825a91c83c0fa3bb05703fdd72ca"
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/x-backup/releases/download/v0.3.0/x-backup_linux_arm64.tar.gz"
-      sha256 "846a2b471a3bfe57b5b5fa708e3ea18c62c291fb749abe33b4ad2282afb0d47f"
+      url "https://github.com/x-mesh/x-backup/releases/download/v0.4.0/x-backup_linux_arm64.tar.gz"
+      sha256 "7d43f9f5eefdfcf4601b58f3d5d0ef8a7c3741a1a38b79684f905f26290e785a"
     end
   end
 
