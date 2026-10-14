@@ -5,13 +5,13 @@
 class Aic < Formula
   desc "Shell command error analyzer with LLM (PTY wrapper + supervisor daemon)"
   homepage "https://github.com/x-mesh/aic"
-  version "0.50.15"
+  version "0.50.16"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/x-mesh/aic/releases/download/v0.50.15/aic_0.50.15_darwin_amd64.tar.gz"
-      sha256 "5fa0192e170b850db22749881850e308da58c7a5da674d595a4eb5e8709063c9"
+      url "https://github.com/x-mesh/aic/releases/download/v0.50.16/aic_0.50.16_darwin_amd64.tar.gz"
+      sha256 "69295b8662917bfc99c2bd07289dceef0a1cccbb34de395de6dce8502e50936d"
 
       def install
         bin.install "aic"
@@ -20,8 +20,8 @@ class Aic < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/x-mesh/aic/releases/download/v0.50.15/aic_0.50.15_darwin_arm64.tar.gz"
-      sha256 "f0b2298106d70bcc83f798103ec4f672f47a364457bb5117b64239a1ee3844a5"
+      url "https://github.com/x-mesh/aic/releases/download/v0.50.16/aic_0.50.16_darwin_arm64.tar.gz"
+      sha256 "3f9839cdbbd93377f34ec01eb352fa50f3b34b7014575f4e99a8f076ffe85f96"
 
       def install
         bin.install "aic"
@@ -33,8 +33,8 @@ class Aic < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/aic/releases/download/v0.50.15/aic_0.50.15_linux_amd64.tar.gz"
-      sha256 "22c60437ccc3b4d72571dc6d81ccbbaa6810b1803ac6384d05b995d39301516c"
+      url "https://github.com/x-mesh/aic/releases/download/v0.50.16/aic_0.50.16_linux_amd64.tar.gz"
+      sha256 "9f6aaad7bbcc8155c88b7ffbad56deffa433e711234dcceb04cfee12d40f368c"
 
       def install
         bin.install "aic"
@@ -43,8 +43,8 @@ class Aic < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/x-mesh/aic/releases/download/v0.50.15/aic_0.50.15_linux_arm64.tar.gz"
-      sha256 "dfc23bcd050bdb3857bf67b009517ab544d109a8123b23b3b467abcb3d854cfe"
+      url "https://github.com/x-mesh/aic/releases/download/v0.50.16/aic_0.50.16_linux_arm64.tar.gz"
+      sha256 "4073977c873fcd922603d1421ffc188c6a1e754a13b480799f47aa2f417eb5bb"
 
       def install
         bin.install "aic"
