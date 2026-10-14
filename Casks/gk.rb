@@ -10,25 +10,25 @@ cask "gk" do
     end
   end
 
-  version "0.150.1"
+  version "0.151.0"
 
   on_macos do
     on_arm do
-      sha256 "aa12b8de2e2a9bdd69e08016180a3a8e9f7409545ec428bd2008f86aa6f2b1f7"
+      sha256 "83fabd4408fbb6692df5cbda8301ef235f49611c6d36511376077ba6ed71ee3f"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_darwin_arm64.tar.gz"
     end
     on_intel do
-      sha256 "adcd22ddf807eeaa6788a9b7f7df9c146d2f5b1df8d7f4d924e05e1de048ce1e"
+      sha256 "a70e7bdd93a38c844526f5c1b7ab45a148afb6aee2638500b5a264d80bacbb30"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_darwin_amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "d6a478447a5db9f8cdb7283d98883de3549204a9605ed8bbf757ff3b0f6a1b3a"
+      sha256 "a8fbd5ab62fb0b118f60e75112d08729b022445fb2521290d0ed8a0e73d74744"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_linux_arm64.tar.gz"
     end
     on_intel do
-      sha256 "4ba4845486ddca150a92368adf2f4a568458570736bf1b8e271744691b31144c"
+      sha256 "eda1f905bd4b7abd3b2d80dc4bdcc1385f962983363843e55d86a381aaed556d"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_linux_amd64.tar.gz"
     end
   end
