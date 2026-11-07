@@ -10,25 +10,25 @@ cask "gk" do
     end
   end
 
-  version "0.151.4"
+  version "0.152.0"
 
   on_macos do
     on_arm do
-      sha256 "089671822b869ac2bb3eab5a1040e7e2345fb3d5d82ce67d4d014559ec40fc6f"
+      sha256 "94487243b6491c5257e9d87f9b1d634a5ce9a313bf77b3d17e1504e886cb2ac1"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_darwin_arm64.tar.gz"
     end
     on_intel do
-      sha256 "5e0c2b055307779c94a17b957b18b1a7d0a41cfbf21c387abe0da889dd923d1e"
+      sha256 "1e51d78ba004d1b4349349d159523f36ff0c9236f8573e8021ee8733ae270dd6"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_darwin_amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "7b68299930a818f633d6cf5429d75c0bf34cf36f2d7f71489d37209fc6266842"
+      sha256 "dabb81e1cb59e14decdcfabd56c59f51385283b87489efa3e42290778ded8188"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_linux_arm64.tar.gz"
     end
     on_intel do
-      sha256 "85e8797ca88456669257170ab6f7a4127286431ca59d49b90e2f9a08621b982c"
+      sha256 "ef7e27756d9851214a325190d0a5352f990c1399588a50402c7aafc86336f85a"
       url "https://github.com/x-mesh/gk/releases/download/v#{version}/gk_linux_amd64.tar.gz"
     end
   end
@@ -43,7 +43,7 @@ cask "gk" do
 
   binary "gk"
 
-  # No zap stanza required
+  zap :not_required
 
   caveats <<~EOS
     gk uses git under the hood. Ensure git >= 2.38 is installed (>= 2.40 recommended).
